@@ -71,7 +71,7 @@ with open("../demo_mat_list.csv", "r") as f:
           with open(input_file, mode="w", encoding="cp932") as f:
               f.write(data_lines)
           
-          # subprocess.run(['mpirun', '-np', '4', '../../../openmx', input_file, '|', 'tee', f"{mat_name}_{line}.std"])
+          subprocess.run(['mpirun', '-np', '4', '../../../openmx', input_file, '|', 'tee', f"{mat_name}_{line}.std"])
           
           command = f"grep 'g1 =' '{mat_name}_{line}.out'" + "| awk '{print $3}'"
           g1 = float(subprocess.run(command, shell = True, capture_output= True, text = True).stdout)
